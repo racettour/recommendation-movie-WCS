@@ -1,22 +1,36 @@
 import pandas as pd
+import matplotlib as plt
+import function as fct
+import seaborn as sns
+import  numpy as np
 
-url_name_basics = "https://datasets.imdbws.com/name.basics.tsv.gz"
-name_basics = pd.read_csv(url_name_basics, sep='\t')
+# url_name_basics = "https://datasets.imdbws.com/name.basics.tsv.gz"
+# df_name_basics = fct.load_database(url_name_basics , 500)
 
-url_title_akas = "https://datasets.imdbws.com/title.akas.tsv.gz"
-title_akas = pd.read_csv(url_title_akas, sep='\t')
+toto = chr(92) + "N"
 
-url_title_basics = "https://datasets.imdbws.com/title.basics.tsv.gz"
-title_basics = pd.read_csv(url_title_basics, sep='\t')
 
-url_title_crew = "https://datasets.imdbws.com/title.crew.tsv.gz"
-title_crew = pd.read_csv(url_title_crew, sep='\t')
+url_title_basics = "https://datasets.imdbws.com/name.basics.tsv.gz"
+df_title_basics = fct.load_database(url_title_basics, 0, 'nconst')
 
-url_title_episode = "https://datasets.imdbws.com/title.episode.tsv.gz"
-title_episode = pd.read_csv(url_title_episode, sep='\t')
+year_df = fct.select_col(df_title_basics, ['startYear', 'titleType'])
 
-url_title_principal = "https://datasets.imdbws.com/title.principals.tsv.gz"
-title_principal = pd.read_csv(url_title_principal, sep='\t')
+year_df.replace(to_replace=toto,
+                value= np.nan,  inplace=True
+                )
+nb_film_years = fct.count_col_val(year_df,'startYear')
 
-url_title_ratings = "https://datasets.imdbws.com/title.ratings.tsv.gz"
-title_ratings = pd.read_csv(url_title_ratings, sep='\t')
+df2 = nb_film_years.dropna(how='all')
+
+
+tt = df_title_basics.groupby('startYear')['startYear'].count().sort_index()
+
+tt = tt.to_frame()
+tt['YEARS'] = tt.index.values
+
+ind = tt.index.values
+val = tt.values
+
+sns.scatterplot(data=tt, x="YEARS", y="startYear")
+
+plt.pyplot.show()
