@@ -34,3 +34,6 @@ val = tt.values
 sns.scatterplot(data=tt, x="YEARS", y="startYear")
 
 plt.pyplot.show()
+
+
+tttt
