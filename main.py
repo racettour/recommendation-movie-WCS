@@ -1,22 +1,29 @@
 import pandas as pd
+import matplotlib as plt
+import function as fct
+import seaborn as sns
+import  numpy as np
+
+# url_name_basics = "https://datasets.imdbws.com/name.basics.tsv.gz"
+# df_name_basics = fct.load_database(url_name_basics , 500)
+
+toto = chr(92) + "N"
+
 
 url_name_basics = "https://datasets.imdbws.com/name.basics.tsv.gz"
-name_basics = pd.read_csv(url_name_basics, sep='\t')
+df_name_basics = fct.load_database(url_name_basics, 0, 'nconst')
 
-url_title_akas = "https://datasets.imdbws.com/title.akas.tsv.gz"
-title_akas = pd.read_csv(url_title_akas, sep='\t')
+typecol = df_name_basics.primaryName.dtype
+primaryName = str(df_name_basics["primaryName"])
 
-url_title_basics = "https://datasets.imdbws.com/title.basics.tsv.gz"
-title_basics = pd.read_csv(url_title_basics, sep='\t')
+# Convert "primaryName" from int to string
+df_name_basics = df_name_basics.astype({'primaryName':'string'})
 
-url_title_crew = "https://datasets.imdbws.com/title.crew.tsv.gz"
-title_crew = pd.read_csv(url_title_crew, sep='\t')
+df_name_basics = fct.convert_col(df_name_basics, "primaryName", "string")
 
-url_title_episode = "https://datasets.imdbws.com/title.episode.tsv.gz"
-title_episode = pd.read_csv(url_title_episode, sep='\t')
-
-url_title_principal = "https://datasets.imdbws.com/title.principals.tsv.gz"
-title_principal = pd.read_csv(url_title_principal, sep='\t')
-
-url_title_ratings = "https://datasets.imdbws.com/title.ratings.tsv.gz"
-title_ratings = pd.read_csv(url_title_ratings, sep='\t')
+#remplacement valeur \N et/ou \\N par des NaN
+value_to_replace = chr(92) + "N"
+df_name_basics = fct.replaceN_to_Nan(df_name_basics, value_to_replace)
+print("fini")
+value_to_replace2 = chr(92) + chr(92) + "N"
+df_name_basics = fct.replaceN_to_Nan(df_name_basics, value_to_replace)
