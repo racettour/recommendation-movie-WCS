@@ -10,30 +10,20 @@ import  numpy as np
 toto = chr(92) + "N"
 
 
-url_title_basics = "https://datasets.imdbws.com/name.basics.tsv.gz"
-df_title_basics = fct.load_database(url_title_basics, 0, 'nconst')
+url_name_basics = "https://datasets.imdbws.com/name.basics.tsv.gz"
+df_name_basics = fct.load_database(url_name_basics, 0, 'nconst')
 
-year_df = fct.select_col(df_title_basics, ['startYear', 'titleType'])
+typecol = df_name_basics.primaryName.dtype
+primaryName = str(df_name_basics["primaryName"])
 
-year_df.replace(to_replace=toto,
-                value= np.nan,  inplace=True
-                )
-nb_film_years = fct.count_col_val(year_df,'startYear')
+# Convert "primaryName" from int to string
+df_name_basics = df_name_basics.astype({'primaryName':'string'})
 
-df2 = nb_film_years.dropna(how='all')
+df_name_basics = fct.convert_col(df_name_basics, "primaryName", "string")
 
-
-tt = df_title_basics.groupby('startYear')['startYear'].count().sort_index()
-
-tt = tt.to_frame()
-tt['YEARS'] = tt.index.values
-
-ind = tt.index.values
-val = tt.values
-
-sns.scatterplot(data=tt, x="YEARS", y="startYear")
-
-plt.pyplot.show()
-
-
-tttt
+#remplacement valeur \N et/ou \\N par des NaN
+value_to_replace = chr(92) + "N"
+df_name_basics = fct.replaceN_to_Nan(df_name_basics, value_to_replace)
+print("fini")
+value_to_replace2 = chr(92) + chr(92) + "N"
+df_name_basics = fct.replaceN_to_Nan(df_name_basics, value_to_replace)
