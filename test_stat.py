@@ -7,7 +7,7 @@ import numpy as np
 # Dataframe loading
 url_title_basics = "https://datasets.imdbws.com/title.basics.tsv.gz"
 df_title_basics = fct.load_database(url_title_basics, 50, 'tconst')
-
+#
 # ======================================================================================================
 # \N and/or \\N replacement by NaN
 value_to_replace = chr(92) + "N"
