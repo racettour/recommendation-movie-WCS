@@ -35,6 +35,12 @@ def convert_col(table_name, columns_name, convert_type):
         if convert_type == 'list':
             table_name2 = table_name.astype({columns_name: 'string'})
             table_name2[columns_name] = table_name2[columns_name].str.split(',')
+        elif convert_type == 'bool':
+            table_name2 = table_name.astype({columns_name: 'int'})
+            table_name2 = table_name2.astype({columns_name: convert_type})
+        elif convert_type == 'datetime64[ns]':
+            table_name2 = table_name.copy()
+            table_name2[columns_name] = pd.to_datetime(table_name2[columns_name], format = '%Y')
         else:
             table_name2 = table_name.astype({columns_name: convert_type})
 
@@ -49,7 +55,7 @@ def convert_col(table_name, columns_name, convert_type):
             table_name2 = table_name
 
     else:
-        print(columns_name, 'expetion à géré dans ')
+        print(columns_name, 'conversion ')
 
     return table_name2
 
@@ -130,7 +136,6 @@ def plot_boxplot(df, list_col, nb_line, nb_col):
     return
 
 
-# enlever les outlites
 def drop_outliers(df, col_name):
     """
     drop line with outliers of the selected columns list
@@ -177,6 +182,19 @@ def replace_nan(df, col_name, replaced_value):
     """
     df[col_name] = df[col_name].fillna(replaced_value)
     return df
+
+
+def delete_duplicate_index(df):
+    """
+    delete duplicated index
+    :param df: dataframe
+    :return: dataframe without duplicates
+    """
+    idx = np.unique(df.index.values, return_index=True)[1]
+    df = df.iloc[idx]
+    return df
+
+
 
 
 # merger 2 DF
