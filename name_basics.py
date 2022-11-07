@@ -71,7 +71,7 @@ df_select4 = df_cleaning2_after_explode[(df_cleaning2_after_explode["primaryProf
 df_select5 = df_cleaning2_after_explode[(df_cleaning2_after_explode["primaryProfession"]=="writer")]
 #concatenation df_select
 df_very_clean= pd.concat([df_select1,df_select2,df_select3,df_select4,df_select5])
-
+fct.plot_nan_prop(df_very_clean,"birthYear")
 print('finito')
 #list_profession = ["actor", "actress", "directos", "producer", "writer"]
 #df[col_name].value_counts(dropna=True)
