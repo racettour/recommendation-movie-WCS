@@ -195,7 +195,19 @@ def delete_duplicate_index(df):
     return df
 
 
-
+def plot_nan_prop(df, col_name):
+    NumberNaN = df[col_name].isna().sum()
+    nb_total_val = df[col_name].count()
+    Filled_field = nb_total_val - NumberNaN
+    data = [NumberNaN, Filled_field]
+    fig, ax = plt.subplots(figsize=(10, 10))
+    explode = [0.02, 0.02]
+    labels = ['NaN', 'Field filled']
+    colors = sns.color_palette('bright')
+    Text_Title = "% du nombre de NaN dans la colonne " + col_name
+    plt.title(Text_Title)
+    plt.pie(data, labels=labels, colors=colors, autopct='%0.0f%%', explode=explode)
+    plt.show()
 
 # merger 2 DF
 def merge_df(df1, df2, df1_index, df2_index, merge_type):
