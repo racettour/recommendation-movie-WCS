@@ -3,10 +3,11 @@ import matplotlib.pyplot as plt
 import function as fct
 import seaborn as sns
 import numpy as np
+import pickle
 
 # Dataframe loading
 url_title_crew = "https://datasets.imdbws.com/title.crew.tsv.gz"
-df_title_crew = fct.load_database(url_title_crew, 200, 'tconst')
+df_title_crew = fct.load_database(url_title_crew, 0, 'tconst')
 
 # ======================================================================================
 # \\N replacement by NaN
@@ -42,7 +43,13 @@ fct.plot_nan_prop(df_title_crew,col_name2)
 
 plt.show()
 
-# Test to explode the lists, to transform them into lines
-toto = df_title_crew.explode('directors')
-print("fini")
 
+df_title_crew = df_title_crew["directors"]
+# Test to explode the lists, to transform them into lines
+#toto = df_title_crew.explode('directors')
+
+with open('df_title_crew.pkl', 'wb') as file:
+   # A new file will be created
+   pickle.dump(df_title_crew, file)
+
+print("fini")
