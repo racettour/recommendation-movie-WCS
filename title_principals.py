@@ -3,13 +3,28 @@ import matplotlib as plt
 import function as fct
 import seaborn as sns
 import  numpy as np
-
+import pickle
+pd.options.mode.chained_assignment = None  # default='warn'
 
 url_title_principals = "https://datasets.imdbws.com/title.principals.tsv.gz"
 df = fct.load_database(url_title_principals, 0, 'tconst')
 
 df_title_principals = df.copy()
 print('=' * 30)
+
+#===========================================================================================
+# variable loading
+with open('IndexSelect.pkl', 'rb') as file:
+    # Call load method to deserialze
+   Index_Raph = pickle.load(file)
+
+
+toto = list(set(df_title_principals.index).intersection(Index_Raph))
+if len(toto) != 0:
+    df_title_principals = df_title_principals.loc[toto]
+
+del df
+
 #===========================================================================================
 # \N and/or \\N replacement by NaN
 value_to_replace = chr(92) + "N"
@@ -47,11 +62,27 @@ print('=' * 30)
 # drop column "characters" and "ordering"
 df_title_principals = df_title_principals.drop(columns=["characters"])
 df_title_principals = df_title_principals.drop(columns=["ordering"])
+df_title_principals = df_title_principals.drop(columns=["job"])
 
 print('=' * 30)
 
 #===========================================================================================
-fct.count_value(df_title_principals, "category")
-fct.count_value(df_title_principals, "job")
+# Keep actors and actress in "category"
 
+df_test = df_title_principals.loc[df_title_principals['category'] == 'actor']
+df_test1 = df_title_principals.loc[df_title_principals['category'] == 'actress']
+df_title_principals = pd.concat([df_test, df_test1])
 
+#===========================================================================================
+index_title_principals = df_title_principals.index
+with open('df_title_principals.pkl', 'wb') as file:
+    # A new file will be created
+    pickle.dump(df_title_principals, file)
+
+#===========================================================================================
+#fct.count_value(df_title_principals, "category")
+#fct.count_value(df_title_principals, "job")
+#df_title_principals = df_title_principals.sort_index(ascending = True)
+#fct.count_value(df_title_principals, "nconst")
+
+#fct.plot_nan_prop(df_title_principals, "job")
