@@ -71,7 +71,7 @@ for i_year in year_values:
     df3 = df_title_basics[df_title_basics['startYear'].values == i_year]
 
     replaced_value = df3['runtimeMinutes'].median()
-    ind = df_title_basics.loc[df3.index]
+    #ind = df_title_basics.loc[df3.index]
     df_title_basics.loc[df3.index] = fct.replace_nan(df_title_basics.loc[df3.index], 'runtimeMinutes', replaced_value)
 
 
@@ -118,6 +118,11 @@ index_select = df_title_basics.index
 with open('IndexSelect.pkl', 'wb') as file:
     # A new file will be created
     pickle.dump(index_select, file)
+
+
+with open('df_title_basics.pkl', 'wb') as file:
+    # A new file will be created
+    pickle.dump(df_title_basics, file)
 
 plt.show()
 print("fini")

@@ -1,29 +1,63 @@
 import pandas as pd
-import matplotlib as plt
+import matplotlib.pyplot as plt
 import function as fct
 import seaborn as sns
-import  numpy as np
+import numpy as np
+import pickle
+import plotly.express as px
 
-# url_name_basics = "https://datasets.imdbws.com/name.basics.tsv.gz"
-# df_name_basics = fct.load_database(url_name_basics , 500)
+with open('df_clean.pkl', 'rb') as file:
+    # Call load method to deserialze
+    df = pickle.load(file)
 
-toto = chr(92) + "N"
+
+df_explode = df.explode('genres')
+df_explode.columns
+df_explode['val']= 1
+#df_explode = df_explode.loc[df_explode['genres'].isin(['Drama','Comedy'])]
+
+print(df_explode.dtypes)
+##  graphique en fonction du temps
+
+commits = df_explode.groupby(['startYear', 'genres']).sum()
+
+sns.lineplot(data=commits.sort_values(by='startYear',
+                                      ascending=True),
+                                      x='startYear',
+                                      y='val',
+                                    hue='genres'
+             ).set_title('Commits')
+
+########################################################
+#sns.lineplot(data=commits.sort_values(by='startYear',
+#                                      ascending=True),
+#                                      x='startYear',
+#                                      y='val',
+#                                    hue='genres'
+#             ).set_title('Commits')
+
+#fig = px.line(commits, x="startYear", y="val", color="genres", line_group="genres", hover_name="genres",
+#        line_shape="spline", render_mode="svg")
 
 
-url_name_basics = "https://datasets.imdbws.com/name.basics.tsv.gz"
-df_name_basics = fct.load_database(url_name_basics, 0, 'nconst')
 
-typecol = df_name_basics.primaryName.dtype
-primaryName = str(df_name_basics["primaryName"])
+plt.show()
+#y_plot = 'runtimeMinutes'
+#fig = px.line(df_explode, x="startYear", y=y_plot, title='Life expectancy in Canada')
+#fig.show()
+values = 'genres'
+table = pd.pivot_table(df_explode, values='val' , index=['startYear'],
+                    columns=[values], aggfunc=np.sum)
 
-# Convert "primaryName" from int to string
-df_name_basics = df_name_basics.astype({'primaryName':'string'})
+fig, ax = plt.subplots(figsize=(10, 10))
 
-df_name_basics = fct.convert_col(df_name_basics, "primaryName", "string")
+#y_val = ['Action', 'Adventure']
+#sns.lineplot(data = table, x=table.index, y = 'Action')
+sns.lineplot(data = df_explode, x='startYear', y ='val', hue = 'genres')
 
-#remplacement valeur \N et/ou \\N par des NaN
-value_to_replace = chr(92) + "N"
-df_name_basics = fct.replaceN_to_Nan(df_name_basics, value_to_replace)
+
+
+
+
+plt.show()
 print("fini")
-value_to_replace2 = chr(92) + chr(92) + "N"
-df_name_basics = fct.replaceN_to_Nan(df_name_basics, value_to_replace)

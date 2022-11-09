@@ -17,7 +17,7 @@ url_title_basics = "https://datasets.imdbws.com/title.akas.tsv.gz"
 
 df_title = pd.DataFrame()
 
-df = pd.read_csv(url_title_basics, sep='\t', index_col='titleId', low_memory=False, chunksize=100000)
+df = pd.read_csv(url_title_basics, sep='\t', index_col='titleId', low_memory=False, chunksize=100000, nrows=200000)
 for i_df in df:
     toto = list(set(i_df.index).intersection(IndexSelect))
     if len(toto) != 0:
