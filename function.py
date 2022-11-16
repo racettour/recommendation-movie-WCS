@@ -4,7 +4,14 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 
-def load_database(url_name, n_rows, index_name):
+def load_database(url_name : str, n_rows : int, index_name : str) -> pd.DataFrame:
+    """
+    load the database. if n_rows = 0 all the database is loaded. else, the indicated number of rows is loaded
+    :param url_name : 
+    :param n_rows: 
+    :param index_name: 
+    :return: dataframe
+    """
     if n_rows == 0:
         df = pd.read_csv(url_name, sep='\t', index_col=index_name, low_memory=False)
     else:
@@ -12,12 +19,24 @@ def load_database(url_name, n_rows, index_name):
     return df
 
 
-def select_col(df, list_col_name):
+def select_col(df: pd.DataFrame, list_col_name: list) -> pd.DataFrame:
+    """
+    select col_name column in df
+    :param df: dataframe
+    :param list_col_name: list
+    :return: dataframe
+    """
     df2 = df[list_col_name]
     return df2
 
 
 def count_col_val(df: pd.DataFrame, col_cont: str) -> pd.DataFrame:
+    """
+    count the different values in col_cont column of the dataframe df
+    :param df: dataframe
+    :param col_cont:
+    :return: dataframe
+    """
     df2: pd.Series = df.groupby(col_cont)[col_cont].count().sort_index()
     df2 = df2.to_frame()
     return df2

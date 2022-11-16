@@ -1,88 +1,73 @@
 import pandas as pd
-import matplotlib as plt
 import function as fct
-import seaborn as sns
-import  numpy as np
 import pickle
 pd.options.mode.chained_assignment = None  # default='warn'
 
-url_title_principals = "https://datasets.imdbws.com/title.principals.tsv.gz"
-df = fct.load_database(url_title_principals, 0, 'tconst')
+def table_cleaning():
+    """
+    load the dataframe "title_cleaning",
+    clean it and save the clean dataframe
+    """
+    # load the dataframe
+    print('loading df')
+    url_title_principals = "https://datasets.imdbws.com/title.principals.tsv.gz"
+    df = pd.read_csv(url_title_principals, sep='\t', index_col='tconst',
+                     low_memory=True, chunksize=300000)
+    #df = fct.load_database(url_title_principals, 0, 'tconst')
 
-df_title_principals = df.copy()
-print('=' * 30)
-
-#===========================================================================================
-# variable loading
-with open('IndexSelect.pkl', 'rb') as file:
-    # Call load method to deserialze
-   Index_Raph = pickle.load(file)
+    # variable loading
+    with open('IndexSelect.pkl', 'rb') as file:
+        # Call load method to deserialze
+        Index = pickle.load(file)
 
 
-toto = list(set(df_title_principals.index).intersection(Index_Raph))
-if len(toto) != 0:
-    df_title_principals = df_title_principals.loc[toto]
+    print('=' * 30)
 
-del df
+    print('select lines')
+    df_title_principals = pd.DataFrame()
 
-#===========================================================================================
-# \N and/or \\N replacement by NaN
-value_to_replace = chr(92) + "N"
-df_title_principals = fct.replace_n_to_nan(df_title_principals, value_to_replace)
+    for i_df in df:
+        toto = list(set(i_df.index).intersection(Index))
+        if len(toto) != 0:
+            df_temp = i_df.loc[toto]
+            df_title_principals = pd.concat([df_title_principals, df_temp])
 
-value_to_replace2 = chr(92) + chr(92) + "N"
-df_title_principals = fct.replace_n_to_nan(df_title_principals, value_to_replace2)
+    del df
 
-print('=' * 30)
+    #===========================================================================================
+    # drop column "characters" and "ordering"
+    print('loading df')
+    df_title_principals = df_title_principals.drop(columns=["characters"])
+    df_title_principals = df_title_principals.drop(columns=["ordering"])
+    df_title_principals = df_title_principals.drop(columns=["job"])
 
-#===========================================================================================
-df_title_principals = fct.convert_col(df_title_principals, "characters", "string")
+    #===========================================================================================
+    print('Nan transformation')
+    # \N and/or \\N replacement by NaN
+    value_to_replace = chr(92) + "N"
+    df_title_principals = fct.replace_n_to_nan(df_title_principals, value_to_replace)
 
-# replace a chosen value by the chosen value: here it is 0 replace by  the median
+    value_to_replace2 = chr(92) + chr(92) + "N"
+    df_title_principals = fct.replace_n_to_nan(df_title_principals, value_to_replace2)
 
-df_title_principals['characters'] = df_title_principals['characters'].replace('\]','', regex=True)
-df_title_principals['characters'] = df_title_principals['characters'].replace('\[','', regex=True)
-df_title_principals['characters'] = df_title_principals['characters'].replace('\"','', regex=True)
-df_title_principals['characters'] = df_title_principals['characters'].replace('\'','', regex=True)
+    #===========================================================================================
+    # Keep actors and actress in "category"
+    print('select actors and actress')
+    df_test = df_title_principals.loc[df_title_principals['category'] == 'actor']
+    df_test1 = df_title_principals.loc[df_title_principals['category'] == 'actress']
+    df_title_principals = pd.concat([df_test, df_test1])
 
-print('=' * 30)
-#===========================================================================================
-# Convert types of dataframe's columns
-columns_name = df_title_principals.columns.values
-type_conv = ["int64", "string", "string", "string", "string"]
+    #===========================================================================================
+    # Convert types of dataframe's columns
+    columns_name = df_title_principals.columns.values
+    type_conv = ["string", "string"]
 
-for pos in range(len(type_conv)):
-    df_title_principals = fct.convert_col(df_title_principals, columns_name[pos], type_conv[pos])
+    for pos in range(len(type_conv)):
+        df_title_principals = fct.convert_col(df_title_principals, columns_name[pos], type_conv[pos])
 
-print(df_title_principals.dtypes)
 
-print('=' * 30)
+    #===========================================================================================
 
-#===========================================================================================
-# drop column "characters" and "ordering"
-df_title_principals = df_title_principals.drop(columns=["characters"])
-df_title_principals = df_title_principals.drop(columns=["ordering"])
-df_title_principals = df_title_principals.drop(columns=["job"])
-
-print('=' * 30)
-
-#===========================================================================================
-# Keep actors and actress in "category"
-
-df_test = df_title_principals.loc[df_title_principals['category'] == 'actor']
-df_test1 = df_title_principals.loc[df_title_principals['category'] == 'actress']
-df_title_principals = pd.concat([df_test, df_test1])
-
-#===========================================================================================
-index_title_principals = df_title_principals.index
-with open('df_title_principals.pkl', 'wb') as file:
-    # A new file will be created
-    pickle.dump(df_title_principals, file)
-
-#===========================================================================================
-#fct.count_value(df_title_principals, "category")
-#fct.count_value(df_title_principals, "job")
-#df_title_principals = df_title_principals.sort_index(ascending = True)
-#fct.count_value(df_title_principals, "nconst")
-
-#fct.plot_nan_prop(df_title_principals, "job")
+    with open('df_title_principals.pkl', 'wb') as file:
+        # A new file will be created
+        pickle.dump(df_title_principals, file)
