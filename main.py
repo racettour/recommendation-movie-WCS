@@ -14,21 +14,52 @@ with open('df_clean.pkl', 'rb') as file:
 df_explode = df.explode('genres')
 df_explode.columns
 df_explode['val']= 1
-#df_explode = df_explode.loc[df_explode['genres'].isin(['Drama','Comedy'])]
+df_explode = df_explode.loc[df_explode['genres'].isin(['Drama','Comedy'])]
 
-print(df_explode.dtypes)
+values = 'genres'
+table_sum = pd.pivot_table(df_explode, values='val' , index=['startYear'],
+                    columns=[values], aggfunc=np.sum)
 ##  graphique en fonction du temps
 
-commits = df_explode.groupby(['startYear', 'genres']).sum()
+df_group_by_sum = df_explode.groupby(['startYear', 'genres']).sum()
 
-sns.lineplot(data=commits.sort_values(by='startYear',
+
+
+df_cc = df.loc[:,['startYear', 'runtimeMinutes','genres', 'averageRating']]
+
+
+df_group_by_mean = df_explode.groupby(['startYear', 'genres']).mean()
+df_group_by_mean = df_group_by_mean.loc[:,['runtimeMinutes','averageRating']]
+
+
+
+values_col = 'genres'
+values_cell = 'averageRating'
+table_moy = pd.pivot_table(df_explode, values= values_cell, index=['startYear'],
+                    columns=[values_col], aggfunc=np.mean)
+
+########################################################
+# sum
+y_val = 'numVotes'
+sns.lineplot(data=df_group_by_sum.sort_values(by='startYear',
                                       ascending=True),
                                       x='startYear',
-                                      y='val',
+                                      y= y_val,
                                     hue='genres'
              ).set_title('Commits')
 
-########################################################
+plt.show()
+
+# mean
+y_val = 'averageRating'
+sns.lineplot(data=df_group_by_mean.sort_values(by='startYear',
+                                      ascending=True),
+                                      x='startYear',
+                                      y= y_val,
+                                    hue='genres'
+             ).set_title('Commits')
+plt.show()
+
 #sns.lineplot(data=commits.sort_values(by='startYear',
 #                                      ascending=True),
 #                                      x='startYear',
@@ -36,24 +67,11 @@ sns.lineplot(data=commits.sort_values(by='startYear',
 #                                    hue='genres'
 #             ).set_title('Commits')
 
-#fig = px.line(commits, x="startYear", y="val", color="genres", line_group="genres", hover_name="genres",
-#        line_shape="spline", render_mode="svg")
 
 
 
 plt.show()
-#y_plot = 'runtimeMinutes'
-#fig = px.line(df_explode, x="startYear", y=y_plot, title='Life expectancy in Canada')
-#fig.show()
-values = 'genres'
-table = pd.pivot_table(df_explode, values='val' , index=['startYear'],
-                    columns=[values], aggfunc=np.sum)
 
-fig, ax = plt.subplots(figsize=(10, 10))
-
-#y_val = ['Action', 'Adventure']
-#sns.lineplot(data = table, x=table.index, y = 'Action')
-sns.lineplot(data = df_explode, x='startYear', y ='val', hue = 'genres')
 
 
 

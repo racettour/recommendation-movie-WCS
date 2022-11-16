@@ -1,38 +1,22 @@
-import pandas as pd
-import matplotlib.pyplot as plt
 import function as fct
-import seaborn as sns
-import numpy as np
 import pickle
 
 
-url_title = "https://datasets.imdbws.com/title.ratings.tsv.gz"
-df = fct.load_database(url_title, 0, 'tconst')
+def table_cleaning():
+    """
+    load the dataframe "title_ranking",
+    clean it and save the clean dataframe
+    """
+    # load the dataframe
+    url_title = "https://datasets.imdbws.com/title.ratings.tsv.gz"
+    df = fct.load_database(url_title, 0, 'tconst')
 
-df_title_ratings = df.copy()
+    df_title_ratings = df.copy()
 
-# variable loading
-
-with open('df_title_ratings.pkl', 'wb') as file:
-    # A new file will be created
-    pickle.dump(df_title_ratings, file)
-
-print('=' * 30)
-
-
-
-
-
+    # save the dataframe
+    with open('df_title_ratings.pkl', 'wb') as file:
+        # A new file will be created
+        pickle.dump(df_title_ratings, file)
 
 
-
-
-
-
-
-
-
-
-
-
-print("fini")
+    print("title ranking is cleaned")
