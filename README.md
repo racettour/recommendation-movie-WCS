@@ -15,11 +15,14 @@ projet 2 de la WCS :
 [![forthebadge](https://github.com/racettour/One-Piece-Web-scraping/blob/main/readme_Image/clean-up-in-process-95%25.svg)](http://forthebadge.com)
 
 # :ledger: Index
+ - [L'Equipe du projet](#handshake-L'Equipe-du-projet)
  - [Les différentes étapes du projet](#beginner-Les-différentes-étapes-du-projet)
-- [Les différentes étapes du projet](#beginner Les différentes étapes du projet)
-- [Future developments](#wrench-future-developments)
-- [Gallery](#camera-gallery)
-- [License](#lock-license)
+ - [schéma de principe](#twisted_rightwards_arrows-schéma-de-principe)
+ - [Développements futurs](#wrench-Développements-futurs)
+ - [Galerie](#camera-Galerie)
+ 
+ 
+ 
 
 # :beginner: Les différentes étapes du projet
 1. Analyse des besoins et des attentes du client
@@ -61,13 +64,13 @@ projet 2 de la WCS :
 #  :camera: Galerie
 ## 1. KPI exemples
 
-Graphique linéaire nous décrivant l'évolution du nombre de films produit par année
+### Graphique linéaire nous décrivant l'évolution du nombre de films produit par année
 ![picture2](image_readme/KPI1.png)
 
-Boîte à moustache représentant les notes de films en fonction de trois genres (Action, Documentaire, Western)
+### Boîte à moustache représentant les notes de films en fonction de trois genres (Action, Documentaire, Western)
 ![picture3](image_readme/KPI2.png)
 
-Matrice de corrélation
+### Matrice de corrélation
 ![picture4](image_readme/KPI3.png)
 
 
