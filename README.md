@@ -5,7 +5,7 @@ projet 2 de la WCS :
  - création d’un moteur de recommandation de film 
 
 # L'Equipe du projet
-- Raphaël Cettour :https://github.com/racettour
+- [Raphaël Cettour](https://github.com/racettour)
 - Anthony Etienne : https://github.com/Anthowheels
 - François Albert : https://github.com/francoisalb
 - Florian Allory : https://github.com/FlorianAllory
@@ -24,7 +24,7 @@ projet 2 de la WCS :
 # :beginner: Les différentes étapes du projet
 1. Analyse des besoins et des attentes du client
 
-2. Chargement des différentes base de données
+2. Chargement des différentes bases de données
 
 - name.basics.tsv.gz
 - title.akas.tsv.gz
@@ -36,21 +36,20 @@ projet 2 de la WCS :
 3. Analyse et nettoyage des données pertinentes en vue de leur exploitation
 
 
-
 4. Création de KPIs sur streamlit
 
 
 5. Création du moteur de recommandation de film 
-- choix de l'IA : K-Nearest Neighbours de Scikit Learn
+- **Choix de l'IA** : K-Nearest Neighbours de Scikit Learn
 - Création d'une interface graphique sur streamlit
-- Web scraping :récupération de l’affiche et du résumé des films sur le site IMdb
+- **Web scraping :** récupération de l’affiche et du résumé des films sur le site IMdb
 
 
 # :twisted_rightwards_arrows: schéma de principe
 ![picture1](image_readme/SchemaPrincipe.png)
 
 
-# :wrench: Futur développements
+# :wrench: Développements futurs
   - Intégrer les séries dans la base de données
   - Etudier une/des solution(s) pour compléter les infos manquantes (NaN) et enrichir la base de données
   - Test utilisateur
@@ -59,10 +58,10 @@ projet 2 de la WCS :
 
 
 
-#  :camera: Gallery
-## 1. KPI example
+#  :camera: Galerie
+## 1. KPI exemples
 
-Grapique linéaire nous décrivant l'évolution du nombre de films produit par année
+Graphique linéaire nous décrivant l'évolution du nombre de films produit par année
 ![picture2](image_readme/KPI1.png)
 
 Boîte à moustache représentant les notes de films en fonction de trois genres (Action, Documentaire, Western)
@@ -72,12 +71,12 @@ Matrice de corrélation
 ![picture4](image_readme/KPI3.png)
 
 
-## 2. KPI example
+## 2. Moteur de recommandation
 
 Choix d'un film pour le moteur de recommendation
 ![picture5](image_readme/IA_1.png)
 
-Exemple de recommandations suite à la sélection Harry Potter
+Exemple de recommandations suite à la sélection "Harry Potter"
 ![picture6](image_readme/IA_2.png)
 
 
