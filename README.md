@@ -1,4 +1,4 @@
-# recommendation-movie-WCS
+# :clapper: recommendation-movie-WCS
 projet 2 de la WCS : 
  - nettoyage de la base de données IMdb
  - création de KPis pour analyser la production cinématographique
