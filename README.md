@@ -15,7 +15,7 @@ projet 2 de la WCS :
 [![forthebadge](https://github.com/racettour/One-Piece-Web-scraping/blob/main/readme_Image/clean-up-in-process-95%25.svg)](http://forthebadge.com)
 
 # :ledger: Index
-
+ - [Les différentes étapes du projet](#beginner-Les différentes étapes du projet)
 - [Les différentes étapes du projet](#beginner Les différentes étapes du projet)
 - [Future developments](#wrench-future-developments)
 - [Gallery](#camera-gallery)
