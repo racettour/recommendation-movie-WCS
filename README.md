@@ -5,8 +5,8 @@ projet 2 de la WCS :
  - création d’un moteur de recommandation de film 
 
 # L'Equipe du projet
-- [https://github.com/racettour](Raphaël Cettour) 
-- Anthony Etienne https://github.com/Anthowheels
+- [https://github.com/racettour]( Raphaël Cettour) 
+- [https://github.com/Anthowheels](# Anthony Etienne) 
 - François Albert https://github.com/francoisalb
 - [Florian Allory] (#https://github.com/FlorianAllory)
 
