@@ -4,7 +4,11 @@ projet 2 de la WCS :
  - création de KPis pour analyser la production cinématographique
  - création d’un moteur de recommandation de film 
 
-
+# L'Equipe du projet
+- ![https://github.com/racettour](Raphaël Cettour) 
+- Anthony Etienne https://github.com/Anthowheels
+- François Albert https://github.com/francoisalb
+- Florian Allory  https://github.com/FlorianAllory
 
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](http://forthebadge.com)  [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)  
