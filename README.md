@@ -57,13 +57,23 @@ projet 2 de la WCS :
 
 #  :camera: Gallery
 ## 1. KPI example
+
+Grapique linéaire nous décrivant l'évolution du nombre de films produit par année
 ![picture2](image_readme/KPI1.png)
+
+Boîte à moustache représentant les notes de films en fonction de trois genres (Action, Documentaire, Western)
 ![picture3](image_readme/KPI2.png)
+
+Matrice de corrélation
 ![picture4](image_readme/KPI3.png)
 
 
 ## 2. KPI example
+
+Choix d'un film pour le moteur de recommendation
 ![picture5](image_readme/IA_1.png)
+
+Exemple de recommandations suite à la sélection Harry Potter
 ![picture6](image_readme/IA_2.png)
 
 
