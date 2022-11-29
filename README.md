@@ -42,7 +42,7 @@ projet 2 de la WCS :
 - Web scraping :récupération de l’affiche et du résumé des films sur le site IMdb
 
 
-# :wrench: schéma de principe
+# :twisted_rightwards_arrows: schéma de principe
 ![picture1](readme_Image/unreadEp.png)
 
 
