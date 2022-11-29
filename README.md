@@ -18,7 +18,7 @@ projet 2 de la WCS :
 - [License](#lock-license)
 
 # :beginner: Les différentes étapes du projet
-1- Analyse des besoins et des attentes du client
+1. Analyse des besoins et des attentes du client
 
 2. Chargement des différentes base de données
 
@@ -42,9 +42,11 @@ projet 2 de la WCS :
 - Web scraping :récupération de l’affiche et du résumé des films sur le site IMdb
 
 
+# :wrench: schéma de principe
+![picture1](readme_Image/unreadEp.png)
 
 
-# :wrench: Future developments
+# :wrench: Futur développements
   - Intégrer les séries dans la base de données
   - Etudier une/des solution(s) pour compléter les infos manquantes (NaN) et enrichir la base de données
   - Test utilisateur
