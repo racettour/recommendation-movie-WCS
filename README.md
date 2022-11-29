@@ -43,7 +43,7 @@ projet 2 de la WCS :
 
 
 # :twisted_rightwards_arrows: schéma de principe
-![picture1](readme_Image/unreadEp.png)
+![picture1](image_readme/SchemaPrincipe.png)
 
 
 # :wrench: Futur développements
@@ -55,9 +55,18 @@ projet 2 de la WCS :
 
 
 
-##  :camera: Gallery
-### 1. Output example
-![picture1](readme_Image/unreadEp.png)
+#  :camera: Gallery
+## 1. KPI example
+![picture2](image_readme/KPI1.png)
+![picture3](image_readme/KPI2.png)
+![picture4](image_readme/KPI3.png)
 
-##  :lock: License
+
+## 2. KPI example
+![picture5](image_readme/AI_1.png)
+![picture6](image_readme/AI_2.png)
+
+
+
+#  :lock: License
 Add a license here, or a link to it.
