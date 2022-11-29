@@ -18,7 +18,7 @@ projet 2 de la WCS :
 - [License](#lock-license)
 
 # :beginner: Les différentes étapes du projet
-1. Analyse des besoins et des attentes du client
+1- Analyse des besoins et des attentes du client
 
 2. Chargement des différentes base de données
 
