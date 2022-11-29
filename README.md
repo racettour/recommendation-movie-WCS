@@ -63,8 +63,8 @@ projet 2 de la WCS :
 
 
 ## 2. KPI example
-![picture5](image_readme/AI_1.png)
-![picture6](image_readme/AI_2.png)
+![picture5](image_readme/IA_1.png)
+![picture6](image_readme/IA_2.png)
 
 
 
