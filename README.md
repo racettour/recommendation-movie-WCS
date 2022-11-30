@@ -1,8 +1,9 @@
 # :clapper: recommendation-movie-WCS
-projet 2 de la WCS : 
+projet 2 de la WCS :
  - nettoyage de la base de données IMdb
  - création de KPis pour analyser la production cinématographique
- - création d’un moteur de recommandation de film 
+ - création d’un moteur de recommandation de film
+
 
 #   :handshake: L'Equipe du projet
 - [Raphaël Cettour](https://github.com/racettour)
@@ -20,9 +21,8 @@ projet 2 de la WCS :
  - [schéma de principe](#twisted_rightwards_arrows-schéma-de-principe)
  - [Développements futurs](#wrench-Développements-futurs)
  - [Galerie](#camera-Galerie)
- 
- 
- 
+
+
 
 # :beginner: Les différentes étapes du projet
 1. Analyse des besoins et des attentes du client
@@ -47,6 +47,10 @@ projet 2 de la WCS :
 - Création d'une interface graphique sur streamlit
 - **Web scraping :** récupération de l’affiche et du résumé des films sur le site IMdb
 
+# Mode d'emploi
+- **Nettoyage de la base de données et entrainement de l'IA :** lancer le programme "main_cleaning_and_IAtraining.py"
+- **Afficher les KPIs :** dans le terminal écrire  "streamlit run {chemin d'acces}/kpi.py"
+- **Afficher le site de recommandation :** dans le terminal écrire  "streamlit run {chemin d'acces}/film_suggestion.py"
 
 # :twisted_rightwards_arrows: schéma de principe
 ![picture1](image_readme/SchemaPrincipe.png)
@@ -86,3 +90,9 @@ Exemple de recommandations suite à la sélection "Harry Potter"
 
 #  :lock: License
 Add a license here, or a link to it.
+
+
+
+tt
+[<img src="https://i.ytimg.com/vi/Hc79sDi3f0U/maxresdefault.jpg" width="50%">](https://www.youtube.com/watch?v=Hc79sDi3f0U "Now in Android: 55")
+
