@@ -4,6 +4,7 @@ projet 2 de la WCS :
  - création de KPis pour analyser la production cinématographique
  - création d’un moteur de recommandation de film
 
+
 #   :handshake: L'Equipe du projet
 - [Raphaël Cettour](https://github.com/racettour)
 - [Anthony Etienne](https://github.com/Anthowheels)
@@ -20,7 +21,6 @@ projet 2 de la WCS :
  - [schéma de principe](#twisted_rightwards_arrows-schéma-de-principe)
  - [Développements futurs](#wrench-Développements-futurs)
  - [Galerie](#camera-Galerie)
-
 
 
 
@@ -42,7 +42,7 @@ projet 2 de la WCS :
 4. Création de KPIs sur streamlit
 
 
-5. Création du moteur de recommandation de film
+5. Création du moteur de recommandation de film 
 - **Choix de l'IA** : K-Nearest Neighbours de Scikit Learn
 - Création d'une interface graphique sur streamlit
 - **Web scraping :** récupération de l’affiche et du résumé des films sur le site IMdb
@@ -92,5 +92,7 @@ Exemple de recommandations suite à la sélection "Harry Potter"
 Add a license here, or a link to it.
 
 
+
 tt
 [<img src="https://i.ytimg.com/vi/Hc79sDi3f0U/maxresdefault.jpg" width="50%">](https://www.youtube.com/watch?v=Hc79sDi3f0U "Now in Android: 55")
+
