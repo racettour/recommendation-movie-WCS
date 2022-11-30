@@ -1,5 +1,4 @@
-import streamlit as st
-import pandas as pd
+
 import seaborn as sns
 import pickle
 import matplotlib.pyplot as plt
@@ -26,13 +25,12 @@ st.title('Analyse de  la base de données IMdb')
 with st.sidebar:
     # ============================graph part============================
     bt_Action = st.checkbox('Action', value=True)
-    bt_Adult = st.checkbox('POUR_TOI_CLEMENT', value=False)
     bt_Adventure = st.checkbox('Adventure', value=False)
     bt_Animation = st.checkbox('Animation', value=False)
     bt_Biography = st.checkbox('Biography', value=False)
     bt_Comedy = st.checkbox('Comedy', value=False)
     bt_Crime = st.checkbox('Crime', value=False)
-    bt_Documentary = st.checkbox('Documentary', value=False)
+    bt_Documentary = st.checkbox('Documentary', value=True)
     bt_Drama = st.checkbox('Drama', value=False)
     bt_Family = st.checkbox('Family', value=False)
     bt_Fantasy = st.checkbox('Fantasy', value=False)
@@ -51,15 +49,13 @@ with st.sidebar:
     bt_Talk_Show = st.checkbox('Talk-Show', value=False)
     bt_Thriller = st.checkbox('Thriller', value=False)
     bt_War = st.checkbox('War', value=False)
-    bt_Western = st.checkbox('Western', value=False)
+    bt_Western = st.checkbox('Western', value=True)
 
     # ============================ action part ============================
     # select the genre and add in a list
     genre_list = []
     if bt_Action:
         genre_list.append('Action')
-    if bt_Adult:
-        genre_list.append('Adult')
     if bt_Adventure:
         genre_list.append('Adventure')
     if bt_Animation:
@@ -161,7 +157,7 @@ with tab_temp:
             hue='genres'
         ).set_title(tap_temp_value)
 
-    #st.pyplot(fig_temp)
+
     ax_temp.set_xlim(x_range_temp[0], x_range_temp[1])
     fig_html_temp = mpld3.fig_to_html(fig_temp)
     components.html(fig_html_temp, height=500)
@@ -206,7 +202,7 @@ with tab_rep:
     # Plot the boxplot
     fig_rep,ax_rep = plt.subplots()
     viz_boxplot = sns.boxplot(df_plot, x=col_value_rep, y="genres")
-    #st.pyplot(fig_rep)
+
     ax_rep.set_xlim(x_range_cor[0], x_range_cor[1])
     fig_html_rep = mpld3.fig_to_html(fig_rep)
     components.html(fig_html_rep, height=500)
@@ -238,11 +234,4 @@ with tab_corr:
     st.write('dataframe')
 
     st.write(df_corr.head(1000))
-
-
-
-    #fig_html_rep = mpld3.fig_to_html(viz_corr)
-    #components.html(fig_html_rep, height=500)
-
-
 

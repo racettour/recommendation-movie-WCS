@@ -20,7 +20,8 @@ def table_cleaning():
     print("filter applying...")
     df_title_basics = df_title_basics[df_title_basics['isAdult'] == '0']
     df_title_basics = df_title_basics[df_title_basics['titleType'] == 'movie']
-
+    supp_adult = df_title_basics[df_title_basics['genres'].str.contains("Adult")].index
+    df_title_basics.drop(index =supp_adult,  inplace=True )
     # ======================================================================================================
     # \N and/or \\N replacement by NaN
     value_to_replace = chr(92) + "N"
@@ -50,6 +51,8 @@ def table_cleaning():
     # ======================================================================================================
     # drop duplicate lines
     #df_title_basics.drop_duplicates(keep=False, inplace=True)
+
+
 
     # ======================================================================================================
     # replace nan value by the chosen value: here it is the median
@@ -84,3 +87,6 @@ def table_cleaning():
         pickle.dump(df_title_basics, file)
 
     print("title basics is cleaned")
+
+
+table_cleaning()

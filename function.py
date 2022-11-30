@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 def load_database(url_name : str, n_rows : int, index_name : str) -> pd.DataFrame:
@@ -229,11 +230,57 @@ def plot_nan_prop(df, col_name):
     labels = ['NaN', 'Field filled']
     colors = sns.color_palette('bright')
     Text_Title = "% du nombre de NaN dans la colonne " + col_name
-    plt.title(Text_Title)
-    plt.pie(data, labels=labels, colors=colors, autopct='%0.0f%%', explode=explode)
+    plt.title(Text_Title, fontdict = {'fontsize' : 25})
+    plt.pie(data, labels=labels, colors=colors, autopct='%0.0f%%', explode=explode, textprops={'fontsize': 25})
 
 
-# merger 2 DF
-def merge_df(df1, df2, df1_index, df2_index, merge_type):
-    pass
+
+def listTostr(list1):
+    """
+    convert list to str
+    :param list1: list
+    :return: str
+    """
+    str1 = " "
+    return str1.join(list1)
+
+
+def convert_Tfi(df, col):
+    """
+    apply TfidfVectorizer to a column of a dataframe
+    :param df: dataframe
+    :param col: str
+    :return:
+    """
+    tfi = TfidfVectorizer()
+    word_vector = tfi.fit_transform(df[col])
+
+    # place tf-idf values in a pandas data frame
+    df_temp2 = pd.DataFrame(word_vector.todense(),
+                            columns=tfi.get_feature_names(),
+                            index= df.index.values)
+
+    # merge df_temp2 with df
+    df = df.merge(df_temp2, left_index=True, right_index=True, how ="left")
+
+    # drop the columns
+    df = df.drop(col, axis = 1)
+
+    return df
+
+def convert_Tfi_sparse(df,col):
+    """
+    apply TfidfVectorizer to a column of a dataframe. the function return the sparse marix
+    :param df: dataframe
+    :param col: str
+    :return: sparse matrix
+    """
+
+    tfi = TfidfVectorizer()
+    sparse = tfi.fit_transform(df[col])
+
+    col_name = tfi.get_feature_names_out()
+    ind_name = df.index.values
+
+    return sparse, col_name, ind_name
 
